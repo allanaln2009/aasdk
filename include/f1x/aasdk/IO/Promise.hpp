@@ -20,6 +20,7 @@
 
 #include <functional>
 #include <boost/asio.hpp>
+#include <boost/noncopyable.hpp>
 #include <f1x/aasdk/Error/Error.hpp>
 #include <f1x/aasdk/IO/IOContextWrapper.hpp>
 
@@ -31,8 +32,7 @@ namespace io
 {
 
 template<typename ResolveArgumentType, typename ErrorArgumentType = error::Error>
-class Promise: boost::noncopyable
-{
+class Promise: boost::noncopyable{
 public:
     typedef ResolveArgumentType ValueType;
     typedef ErrorArgumentType ErrorType;
@@ -113,8 +113,7 @@ private:
 };
 
 template<typename ErrorArgumentType>
-class Promise<void, ErrorArgumentType>: boost::noncopyable
-{
+class Promise<void, ErrorArgumentType>: boost::noncopyable{
 public:
     typedef ErrorArgumentType ErrorType;
     typedef std::function<void()> ResolveHandler;
@@ -194,8 +193,7 @@ private:
 };
 
 template<>
-class Promise<void, void>: boost::noncopyable
-{
+class Promise<void, void>: boost::noncopyable{
 public:
     typedef std::function<void()> ResolveHandler;
     typedef std::function<void()> RejectHandler;
@@ -274,8 +272,7 @@ private:
 };
 
 template<typename ResolveArgumentType>
-class Promise<ResolveArgumentType, void>: boost::noncopyable
-{
+class Promise<ResolveArgumentType, void>: boost::noncopyable{
 public:
     typedef ResolveArgumentType ValueType;
     typedef std::function<void(ResolveArgumentType)> ResolveHandler;

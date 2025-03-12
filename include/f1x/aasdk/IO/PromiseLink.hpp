@@ -31,8 +31,7 @@ namespace io
 {
 
 template<typename SourceResolveArgumentType = void, typename DestinationResolveArgumentType = void>
-class PromiseLink: public std::enable_shared_from_this<PromiseLink<SourceResolveArgumentType, DestinationResolveArgumentType>>
-{
+class PromiseLink: public std::enable_shared_from_this<PromiseLink<SourceResolveArgumentType, DestinationResolveArgumentType>>{
 public:
     typedef std::shared_ptr<PromiseLink<SourceResolveArgumentType, DestinationResolveArgumentType>> Pointer;
     typedef std::function<DestinationResolveArgumentType(SourceResolveArgumentType)> TransformFunctor;
@@ -84,8 +83,7 @@ private:
 };
 
 template<>
-class PromiseLink<void, void>: public std::enable_shared_from_this<PromiseLink<void, void>>
-{
+class PromiseLink<void, void>: public std::enable_shared_from_this<PromiseLink<void, void>>{
 public:
     typedef std::shared_ptr<PromiseLink<void, void>> Pointer;
 
